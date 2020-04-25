@@ -1,5 +1,7 @@
 package br.com.fiap.jpa.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -34,6 +37,12 @@ public class Receptor {
 	@Column(name="ds_orgao_receptor")
 	private TipoOrgao orgReceptor; //descricao_orgao_receptor Enum
 
+	@OneToMany(mappedBy = "TB_DOADOR")
+	private Set<Doacao> doacoes;
+	
+	
+	
+	
 	
 	public int getCodigoReceptor() {
 		return codigoReceptor;

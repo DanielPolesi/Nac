@@ -1,5 +1,7 @@
 package br.com.fiap.jpa.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,8 +9,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="TB_DOADOR")
@@ -29,9 +35,14 @@ public class Doador {
 	@Enumerated(EnumType.STRING)
 	@Column(name="ds_orgao_doador")
 	private TipoOrgao orgDoador; //descricao_orgao_doador Enum
-
-
-
+	
+	@ManyToMany
+	@JoinTable(
+	name = "tramite_doacao",
+	joinColumns = @JoinColumn(name = "cd_doador"),
+	inverseJoinColumns = @JoinColumn(name = "cd_tramite"))
+	Set<Doacao> tramiteDoacao;
+	
 
 	public int getCodigoDoador() {
 		return codigoDoador;
