@@ -29,7 +29,7 @@ public class ConsoleView {
 		Doador doador = new Doador("Nicholas Kuchiniski");
 		Receptor receptor = new Receptor("Lucas Barros");
 		Doacao doacao = new Doacao(doador, receptor, TipoOrgao.CORACAO);
-
+//			criar uma lista de hospitais que um doador pode ter sido cadastrado para depois persistir
 		try {
 			doadorDAO.cadastrar(doador);
 			receptorDAO.cadastrar(receptor);
