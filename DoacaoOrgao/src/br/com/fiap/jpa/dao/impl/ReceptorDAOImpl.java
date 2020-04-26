@@ -10,5 +10,5 @@ public class ReceptorDAOImpl extends GenericDAOImpl<Receptor, Integer> implement
 	public ReceptorDAOImpl(EntityManager em) {
 		super(em);
 	}
-
+	
 }
