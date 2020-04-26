@@ -14,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -33,20 +32,13 @@ public class Doador {
 
 	@OneToMany(mappedBy = "doador", cascade = CascadeType.ALL)
 	private List<Doacao> doacoes = new ArrayList<Doacao>();
-//		N para N hospital
-//	 um doador pode doar em varios hospitais e 1 hospital pode ter varios doadores
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-	@JoinTable(name = "TB_HOSPITAL_DOADOR", joinColumns = @JoinColumn(name = "cd_doador"), inverseJoinColumns = @JoinColumn(name = "cd_hospital"))
-	private List<Hospital> hospitais;
 
-	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
-	@JoinColumn(name = "cd_endereco")
-	private Endereco endereco;
+	@ManyToMany(mappedBy = "doadores")
+	private List<Hospital> hospitais;
 	
-	
-	
-	public Doador(String nome) {
+	public Doador(String nome, List<Hospital> hospitais) {
 		this.nome = nome;
+		this.hospitais = hospitais;
 	}
 
 	public int getCodigoDoador() {
