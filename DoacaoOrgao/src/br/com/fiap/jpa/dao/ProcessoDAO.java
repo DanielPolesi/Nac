@@ -1,7 +1,7 @@
 package br.com.fiap.jpa.dao;
 
-import br.com.fiap.jpa.entity.Processo;
+import br.com.fiap.jpa.entity.Endereco;
 
-public interface ProcessoDAO extends GenericDAO<Processo, Integer> {
+public interface ProcessoDAO extends GenericDAO<Endereco, Integer> {
 
 }

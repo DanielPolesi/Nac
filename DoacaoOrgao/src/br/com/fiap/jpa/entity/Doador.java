@@ -40,8 +40,11 @@ public class Doador {
 	private List<Hospital> hospitais;
 
 	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
-	@JoinColumn(name = "cd_processo")
-	private Processo processo;
+	@JoinColumn(name = "cd_endereco")
+	private Endereco endereco;
+	
+	
+	
 	public Doador(String nome) {
 		this.nome = nome;
 	}
