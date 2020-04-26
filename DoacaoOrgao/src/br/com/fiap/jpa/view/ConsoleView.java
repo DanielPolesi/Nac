@@ -31,7 +31,6 @@ public class ConsoleView {
 		EntityManagerFactory fabrica = EntityManagerFactorySingleton.getInstance();
 		EntityManager em = fabrica.createEntityManager();
 
-
 		EnderecoDAO enderecoDAO = new EnderecoDAOImpl(em);
 		HospitalDAO hospitalDAO = new HospitalDAOImpl(em);
 		DoadorDAO doadorDAO = new DoadorDAOImpl(em);
@@ -39,8 +38,9 @@ public class ConsoleView {
 		DoacaoDAO doacaoDAO = new DoacaoDAOImpl(em);
 
 		List<Hospital> hospitais = new ArrayList<Hospital>();
-		
-		Endereco endereco = new Endereco("Avenida Paulista", "São Paulo", "Apto 10", "SP", 17, "Consolação", "01311-922");
+
+		Endereco endereco = new Endereco("Avenida Paulista", "São Paulo", "Apto 10", "SP", 17, "Consolação",
+				"01311-922");
 		Hospital hospital = new Hospital("Santa Marcelina", endereco);
 		hospitais.add(hospital);
 		Doador doador = new Doador("Nicholas Kuchiniski", hospitais);

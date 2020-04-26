@@ -1,5 +1,6 @@
 package br.com.fiap.jpa.entity;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,29 +16,33 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="TB_HOSPITAL")
-@SequenceGenerator(name="hospital", sequenceName = "SQ_TB_HOSPITAL", allocationSize = 1)
+@Table(name = "TB_HOSPITAL")
+@SequenceGenerator(name = "hospital", sequenceName = "SQ_TB_HOSPITAL", allocationSize = 1)
 public class Hospital {
 
 	@Id
-	@Column(name="cd_hospital")
-	@GeneratedValue(generator="hospital", strategy = GenerationType.SEQUENCE)
+	@Column(name = "cd_hospital")
+	@GeneratedValue(generator = "hospital", strategy = GenerationType.SEQUENCE)
 	private int codigoHospital;
 
 	@Column(name = "nm_hospital", nullable = false, length = 100)
 	private String nome;
-	
+
 	@ManyToMany(cascade = CascadeType.PERSIST)
-	@JoinTable(name="TB_HOSPITAL_DOADOR",
-			joinColumns = @JoinColumn(name="cd_hospital"),
-			inverseJoinColumns = @JoinColumn(name="cd_doador"))
+	@JoinTable(name = "TB_HOSPITAL_DOADOR", joinColumns = @JoinColumn(name = "cd_hospital"), inverseJoinColumns = @JoinColumn(name = "cd_doador"))
 	private List<Doador> doadores;
 
-	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+	@OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST }, fetch = FetchType.EAGER)
 	@JoinColumn(name = "cd_endereco")
 	private Endereco endereco;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "dt_criacao")
+	private Calendar dataCriacao = Calendar.getInstance();
 
 	public Hospital(String nome, Endereco endereco) {
 		super();
@@ -64,8 +69,5 @@ public class Hospital {
 	public int getCodigoHospital() {
 		return codigoHospital;
 	}
-	
-	
-	
-		
+
 }

@@ -1,21 +1,21 @@
 package br.com.fiap.jpa.entity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "TB_DOADOR")
@@ -35,7 +35,11 @@ public class Doador {
 
 	@ManyToMany(mappedBy = "doadores")
 	private List<Hospital> hospitais;
-	
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "dt_criacao")
+	private Calendar dataCriacao = Calendar.getInstance();
+
 	public Doador(String nome, List<Hospital> hospitais) {
 		this.nome = nome;
 		this.hospitais = hospitais;

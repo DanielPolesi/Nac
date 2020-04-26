@@ -1,5 +1,7 @@
 package br.com.fiap.jpa.entity;
 
+import java.util.Calendar;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "TB_DOACAO")
@@ -34,6 +38,10 @@ public class Doacao {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "ds_tipo_orgao")
 	private TipoOrgao tipoOrgao;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name="dt_criacao")
+	private Calendar dataCriacao = Calendar.getInstance();
 
 	public Doacao(Doador doador, Receptor receptor, TipoOrgao tipoOrgao) {
 		this.doador = doador;

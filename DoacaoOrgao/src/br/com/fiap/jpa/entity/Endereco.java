@@ -1,5 +1,7 @@
 package br.com.fiap.jpa.entity;
 
+import java.util.Calendar;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "TB_ENDERECO")
@@ -44,7 +48,12 @@ public class Endereco {
 	@OneToOne(mappedBy = "endereco", cascade = CascadeType.ALL)
 	private Hospital hospital;
 
-	public Endereco(String rua, String cidade, String complemento, String estado, int numero, String bairro, String cep) {
+	@Temporal(TemporalType.DATE)
+	@Column(name = "dt_criacao")
+	private Calendar dataCriacao = Calendar.getInstance();
+
+	public Endereco(String rua, String cidade, String complemento, String estado, int numero, String bairro,
+			String cep) {
 		this.rua = rua;
 		this.cidade = cidade;
 		this.complemento = complemento;

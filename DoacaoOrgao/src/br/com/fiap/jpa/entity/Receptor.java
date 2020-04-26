@@ -1,6 +1,7 @@
 package br.com.fiap.jpa.entity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "TB_RECEPTOR")
@@ -27,6 +30,10 @@ public class Receptor {
 
 	@OneToMany(mappedBy = "receptor", cascade = CascadeType.ALL)
 	private List<Doacao> doacoes = new ArrayList<Doacao>();
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "dt_criacao")
+	private Calendar dataCriacao = Calendar.getInstance();
 
 	public Receptor(String nome) {
 		this.nome = nome;
